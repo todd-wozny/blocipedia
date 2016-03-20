@@ -8,6 +8,6 @@ class WikiPolicy < ApplicationPolicy
 
   def update?
     #user.admin? or not record.published?
-    user.present?
+    @wiki.user == @user || @user.admin?
   end
 end
