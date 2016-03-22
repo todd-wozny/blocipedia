@@ -20,6 +20,8 @@ gem 'devise'
 
 gem 'pundit'
 
+gem 'stripe'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
