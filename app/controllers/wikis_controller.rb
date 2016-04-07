@@ -1,6 +1,8 @@
 class WikisController < ApplicationController
   before_filter :find_wiki, only: [:edit, :show, :destroy]
   before_filter :wikis, only: [:index]
+  before_action :require_sign_in, except: [:index, :show]
+  before_action :authorize_user, except: [:index, :show]
   
   def index
   end
@@ -76,9 +78,15 @@ class WikisController < ApplicationController
    @wikis ||= Wiki.all
    #@wikis = Wiki.visible_to(current_user)
   end
+  
+  def authorize_user
+     unless current_user.admin?
+       flash[:alert] = "You must be an admin to do that."
+       redirect_to wikis_path
+     end
+  end
  
 end
 
 
 #refactoring
-
