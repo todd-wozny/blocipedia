@@ -13,9 +13,13 @@ class WikisController < ApplicationController
   end
   
   def create
-    if Wiki.create(wiki_params)
+    wiki = Wiki.new(wiki_params)
+    wiki.user = current_user
+    
+    if wiki.save
       redirect_to wikis_path, notice: "Wiki was saved."
     else
+      @wiki = Wiki.new
       render :new, alert: "There was an error saving the wiki. Please try again."
     end
   end
