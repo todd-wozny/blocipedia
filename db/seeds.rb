@@ -1,14 +1,17 @@
 require 'random_data'
 
  
- 5.times do
-   User.create!(
+ admin = User.create!(
+   email:    'toddwoznyNew@yahoo.com',
+   password: 'helloworld',
+   role:     'admin'
+ )
  
-   #name:     RandomData.random_name,
-   email:    RandomData.random_email,
-   password: RandomData.random_sentence
-   )
- end
+ # Create a member
+ standard = User.create!(
+   email:    'toddwoznyNew@gmail.com',
+   password: 'helloworld'
+ )
  users = User.all
 
  
