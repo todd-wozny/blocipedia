@@ -5,9 +5,11 @@ class WikisController < ApplicationController
   before_action :authorize_user, except: [:index, :show]
   
   def index
+    @renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML,autolink: true, tables: true)
   end
 
   def show
+    @renderer = Redcarpet::Markdown.new(Redcarpet::Render::HTML,autolink: true, tables: true)
   end
 
   def new
